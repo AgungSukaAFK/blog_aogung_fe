@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  max-width: 1px;
+  @include break(xl) {
+    max-width: 1533px;
+  }
+  @include break(lg) {
+    max-width: 1024px;
+  }
+  @include break(md) {
+    max-width: 991px;
+  }
+  @include break(sm) {
+    max-width: 720px;
+  }
+  @include break(xs) {
+    max-width: 600px;
+  }
+}

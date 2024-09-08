@@ -1,0 +1,93 @@
+// @import "@/mixin.scss";
+
+.navbar {
+  position: sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+}
+
+.container {
+  display: flex;
+}
+
+.logo {
+  flex-basis: 300px;
+  font-weight: 600;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+  span {
+    opacity: 1;
+    animation: blink 3s infinite;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.main {
+  display: flex;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.navigation {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-grow: 1;
+  a {
+    font-size: 1.2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    &:hover {
+      background-color: var(--accent-primary-engage);
+    }
+  }
+}
+
+.option {
+  flex-basis: 200px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.active {
+  color: var(--text-inactive);
+}
+
+@include break(sm) {
+  .logo {
+    flex-basis: 200px;
+  }
+}
+
+@include break(xs) {
+  .main {
+    display: none;
+  }
+}
