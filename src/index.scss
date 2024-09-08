@@ -1,9 +1,4 @@
-html {
-  background-color: #1b1b1b;
-}
-
 :root {
-  background-color: var(--bg);
   color: var(--text);
 
   @include break(xl) {
