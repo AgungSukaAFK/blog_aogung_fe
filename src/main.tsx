@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AdminPanel from "./page/AdminPanel/index.tsx";
 import Navbar from "./component/Navbar/index.tsx";
 import Landing from "./page/Landing/index.tsx";
+import PrivateRoute from "./component/PrivateRoute/index.tsx";
+import { LoadingProvider } from "./context/loadingContext.tsx";
+import AuthPage from "./page/AuthPage/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +20,16 @@ const router = createBrowserRouter([
     element: <Landing />,
   },
   {
+    path: "/auth",
+    element: <AuthPage />,
+  },
+  {
     path: "/admin",
-    element: <AdminPanel />,
+    element: (
+      <PrivateRoute>
+        <AdminPanel />
+      </PrivateRoute>
+    ),
   },
   {
     path: "*",
@@ -28,13 +39,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <head>
-      <link
-        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-        rel="stylesheet"
-      />
-    </head>
-    <Navbar />
-    <RouterProvider router={router} />
+    <LoadingProvider>
+      <Navbar />
+      <RouterProvider router={router} />
+    </LoadingProvider>
   </StrictMode>
 );

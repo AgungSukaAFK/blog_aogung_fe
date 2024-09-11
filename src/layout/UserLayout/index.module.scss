@@ -1,0 +1,60 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.c {
+  display: flex;
+  width: 100%;
+  &__side {
+    flex-basis: 300px;
+  }
+
+  &__main {
+    flex-grow: 1;
+    display: flex;
+    &__content {
+      flex-grow: 1;
+      &__header {
+        display: flex;
+        padding: 1rem 0;
+        h3 {
+          flex-grow: 1;
+        }
+      }
+    }
+    &__option {
+      flex-basis: 200px;
+    }
+  }
+}
+
+@include break(sm) {
+  .c {
+    display: flex;
+    width: 100%;
+    &__side {
+      display: none;
+    }
+
+    &__main {
+      padding: 10px;
+      flex-grow: 1;
+      display: flex;
+      &__content {
+        flex-grow: 1;
+        &__header {
+          display: flex;
+          padding: 1rem 0;
+          h3 {
+            flex-grow: 1;
+          }
+        }
+      }
+      &__option {
+        display: none;
+      }
+    }
+  }
+}

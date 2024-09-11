@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Button from "../../atom/Button";
 import Container from "../../atom/Container";
 import ThemeToggler from "../ThemeToggler";
@@ -19,6 +20,15 @@ export default function Navbar() {
       path: "/about",
     },
   ];
+
+  const optionRef = useRef<HTMLDivElement | null>(null);
+  function hamburgerClick() {
+    if (optionRef.current) {
+      if (optionRef.current.classList) {
+        optionRef.current.classList.toggle(s.show);
+      }
+    }
+  }
 
   return (
     <div className={s.navbar}>
@@ -42,13 +52,17 @@ export default function Navbar() {
               );
             })}
           </div>
-          <div className={s.option}>
+          <div className={s.option} ref={optionRef}>
             <ThemeToggler />
             <Button type="primary">
               <i className="bx bx-user-circle"></i>
               Dashboard
             </Button>
           </div>
+          <i
+            className={`bx bx-menu ${s.hamburger}`}
+            onClick={hamburgerClick}
+          ></i>
         </div>
       </Container>
     </div>

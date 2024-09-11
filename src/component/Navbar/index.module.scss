@@ -9,7 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--border);
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
 }
 
 .container {
@@ -76,13 +77,45 @@
   align-items: center;
 }
 
+.hamburger {
+  display: none !important;
+}
+
 .active {
   color: var(--text-inactive);
 }
 
 @include break(sm) {
+  .navbar {
+    z-index: 2;
+  }
   .logo {
     flex-basis: 200px;
+    font-size: 1.9rem;
+    font-weight: 800;
+  }
+  .option {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    transform: scaleY(0);
+    transition: 0.3s ease;
+    transform-origin: right top;
+  }
+  .show {
+    transform: scaleY(1);
+  }
+  .hamburger {
+    padding-right: 40px;
+    cursor: pointer;
+    display: block !important;
+    font-size: 1.2rem;
   }
 }
 
