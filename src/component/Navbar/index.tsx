@@ -45,7 +45,9 @@ export default function Navbar() {
                 <a
                   href={nav.path}
                   key={index}
-                  className={nav.path === url ? s.active : ""}
+                  className={
+                    url.split("/")[1] === nav.path.split("/")[1] ? s.active : ""
+                  }
                 >
                   {nav.name}
                 </a>

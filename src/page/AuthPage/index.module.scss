@@ -1,0 +1,200 @@
+$transition: 0.3s ease;
+
+.c {
+  background-color: #313131;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $transition;
+  &__card {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    padding: 30px 20px;
+    box-shadow: 1px 5px 13px 3px rgba($color: #000000, $alpha: 0.25);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    &__alert {
+      width: 100%;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #0085f21a;
+      padding: 5px 10px;
+      border-radius: 3px;
+      transform-origin: bottom center;
+      animation: slideup 0.5s ease normal;
+      position: relative;
+      color: #d9d9d9;
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 100%;
+        height: 2px;
+        animation: progress 5s ease;
+        background-color: #eeeeee;
+      }
+      &__close {
+        animation: slidedown 0.5s ease;
+      }
+      i {
+        font-size: 0.9rem;
+      }
+    }
+    &__toggle {
+      position: relative;
+      font-size: 0.875rem;
+      font-weight: 600;
+      width: 80%;
+      display: flex;
+      border: 1px solid #858585;
+      justify-content: center;
+      border-radius: 28px;
+      padding: 10px 0;
+      &__option {
+        position: relative;
+        color: #858585;
+        z-index: 2;
+        flex-grow: 1;
+        text-align: center;
+        transition: $transition;
+        cursor: pointer;
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+      &__background {
+        height: 100%;
+        width: 50%;
+        background-color: #eeeeee;
+        border-radius: 28px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 0;
+        transition: $transition;
+        &__right {
+          left: 50%;
+        }
+      }
+    }
+    &__input {
+      width: 100%;
+      height: 100%;
+      max-height: 700px;
+      display: flex;
+      flex-direction: column;
+      padding: 60px 0;
+      padding-top: 60px;
+      gap: 30px;
+      &__w {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        &__w {
+          width: 100%;
+          display: flex;
+          gap: 10px;
+          border-bottom: 1px solid #d9d9d9;
+        }
+        &__lock {
+          display: flex;
+          padding-right: 15px;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: #d9d9d9;
+          transition: $transition;
+          &:hover {
+            filter: brightness(0.8);
+          }
+        }
+        label {
+          color: #eeeeee;
+        }
+        input {
+          flex-grow: 1;
+          padding: 10px 0;
+          background: none;
+          border: none;
+          color: #d9d9d9;
+          font-size: 1rem;
+          font-weight: 400;
+          font-family: serif;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+    &__button {
+      width: 80%;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 28px;
+      padding: 23px 0;
+      transition: $transition;
+      background-color: #eee;
+      color: #000000;
+      &__disabled {
+        cursor: not-allowed;
+        filter: brightness(0.5);
+      }
+    }
+    p {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #d9d9d9;
+    }
+  }
+}
+
+.textPrimary {
+  color: #000000 !important;
+}
+
+@keyframes slideup {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes slidedown {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+    display: none;
+  }
+}
+
+@keyframes progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+@include break(xs) {
+  .c__card {
+    box-shadow: none;
+  }
+}

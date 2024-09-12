@@ -37,10 +37,14 @@ const router = createBrowserRouter([
   },
 ]);
 
+const disableNavbar: string[] = ["auth"];
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <LoadingProvider>
-      <Navbar />
+      {!disableNavbar.some((path) =>
+        window.location.pathname.startsWith(`/${path}`)
+      ) && <Navbar />}
       <RouterProvider router={router} />
     </LoadingProvider>
   </StrictMode>

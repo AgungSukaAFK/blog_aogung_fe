@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import call from "../utils/call";
 
 /*
     const { user, loading } = useAuth()
@@ -17,16 +18,7 @@ export const useAuth = () => {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const res = await fetch("http://localhost:3000/user/whoami", {
-          credentials: "include",
-        });
-
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await res.json();
-
+        const data = await call.get("/user/whoami");
         if (data.success) {
           setUser(data.data);
         } else {
