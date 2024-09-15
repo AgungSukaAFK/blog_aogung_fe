@@ -3,8 +3,11 @@ import Button from "../../atom/Button";
 import Container from "../../atom/Container";
 import ThemeToggler from "../ThemeToggler";
 import s from "./index.module.scss";
+import { useAuth } from "../../hook/useAuth";
 
 export default function Navbar() {
+  const { user, loading } = useAuth();
+
   const url = window.location.pathname;
   const navs: Array<{ name: string; path: string }> = [
     {
@@ -21,12 +24,24 @@ export default function Navbar() {
     },
   ];
 
-  const optionRef = useRef<HTMLDivElement | null>(null);
+  const mainRef = useRef<HTMLDivElement | null>(null);
   function hamburgerClick() {
-    if (optionRef.current) {
-      if (optionRef.current.classList) {
-        optionRef.current.classList.toggle(s.show);
+    if (mainRef.current) {
+      if (mainRef.current.classList) {
+        mainRef.current.classList.toggle(s.show);
       }
+    }
+  }
+
+  function dashboardButton() {
+    if (user) {
+      if (user.role === "admin") {
+        window.location.href = "/admin";
+      } else {
+        window.location.href = "/dashboard";
+      }
+    } else {
+      window.location.href = "/auth";
     }
   }
 
@@ -38,7 +53,7 @@ export default function Navbar() {
             AoGung<span>_</span>
           </a>
         </div>
-        <div className={s.main}>
+        <div className={s.main} ref={mainRef}>
           <div className={s.navigation}>
             {navs.map((nav, index) => {
               return (
@@ -54,18 +69,15 @@ export default function Navbar() {
               );
             })}
           </div>
-          <div className={s.option} ref={optionRef}>
+          <div className={s.option}>
             <ThemeToggler />
-            <Button type="primary">
+            <Button type="primary" onClick={dashboardButton}>
               <i className="bx bx-user-circle"></i>
-              Dashboard
+              {loading ? "Loading..." : user ? "Dashboard" : "Login"}
             </Button>
           </div>
-          <i
-            className={`bx bx-menu ${s.hamburger}`}
-            onClick={hamburgerClick}
-          ></i>
         </div>
+        <i className={`bx bx-menu ${s.hamburger}`} onClick={hamburgerClick}></i>
       </Container>
     </div>
   );

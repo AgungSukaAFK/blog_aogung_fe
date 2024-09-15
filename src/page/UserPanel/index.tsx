@@ -9,23 +9,10 @@ import { useState } from "react";
 import call from "../../utils/call";
 import ChangePassword from "../../component/ChangePassword";
 
-export default function AdminPanel() {
+export default function UserPanel() {
   const [dz, setDz] = useState<boolean>(false); // Drop zone
   const [cpw, setCpw] = useState<boolean>(false); // Change Password
   const { user }: { user: UserModel | null } = useAuth();
-  // const { setLoading } = useLoading();
-
-  // useEffect(() => {
-  //   setLoading(loading);
-  // }, [loading]);
-
-  const dummyUserData = {
-    name: "Wisma",
-    role: "admin",
-    createdAt: "27 April 2024",
-    updatedAt: "29 April 2024",
-    totalBlogs: 7,
-  };
 
   const dummyBlogs = [
     {
@@ -78,7 +65,7 @@ export default function AdminPanel() {
   }
 
   return (
-    <UserLayout type="admin">
+    <UserLayout type="user">
       {dz && (
         <FileDropper
           callback={dropZoneCallback}
@@ -91,10 +78,6 @@ export default function AdminPanel() {
           <div className={s.userdata__info__field}>
             <span>Name</span>
             {user?.username}
-          </div>
-          <div className={s.userdata__info__field}>
-            <span>Total Blogs</span>
-            {dummyUserData.totalBlogs}
           </div>
           <div className={s.userdata__info__field}>
             <span>Created date</span>
@@ -112,13 +95,12 @@ export default function AdminPanel() {
         </div>
       </div>
       <Divider />
-      <Button>Create blog</Button>
+      <h4>Bookmarked Blogs</h4>
       <div className={s.blogs}>
         {dummyBlogs.map((blog, index) => (
           <div className={s.blogs__blog} key={index}>
             <img src={blog.image} alt="blog" />
             <p>{blog.title}</p>
-            <Button>Edit</Button>
             <Button>Delete</Button>
           </div>
         ))}

@@ -5,4 +5,15 @@ interface ApiResponse {
   [key: string]: any;
 }
 
-export type { ApiResponse };
+interface UserModel {
+  id?: number;
+  username?: string;
+  password?: string;
+  image?: string;
+  role?: string;
+  created?: string;
+  updated?: string;
+  [key: string]: any;
+}
+
+export type { ApiResponse, UserModel };

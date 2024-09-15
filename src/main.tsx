@@ -9,6 +9,7 @@ import Landing from "./page/Landing/index.tsx";
 import PrivateRoute from "./component/PrivateRoute/index.tsx";
 import { LoadingProvider } from "./context/loadingContext.tsx";
 import AuthPage from "./page/AuthPage/index.tsx";
+import UserPanel from "./page/UserPanel/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +27,16 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <PrivateRoute>
+      <PrivateRoute path="/admin">
         <AdminPanel />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute path="/dashboard">
+        <UserPanel />
       </PrivateRoute>
     ),
   },

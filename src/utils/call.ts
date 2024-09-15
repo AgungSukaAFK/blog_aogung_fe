@@ -31,6 +31,25 @@ const call = {
       });
 
       const json = await res.json();
+      console.log(json);
+      return json;
+    } catch (err) {
+      console.log(`ERR CALL: ${err}`);
+      return false;
+    }
+  },
+  postForm: async (url: string, data?: FormData) => {
+    try {
+      const res = await fetch(`${apiurl}${url}`, {
+        method: "POST",
+        credentials: "include",
+
+        body: data,
+      }).catch((err) => {
+        throw err;
+      });
+
+      const json = await res.json();
       return json;
     } catch (err) {
       console.log(`ERR CALL: ${err}`);
@@ -38,5 +57,4 @@ const call = {
     }
   },
 };
-
 export default call;

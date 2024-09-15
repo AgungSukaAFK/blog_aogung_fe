@@ -28,4 +28,4 @@ export const LoadingProvider: FC<LoadingProviderProps> = ({ children }) => {
   );
 };
 
-export default LoadingContext
+export default LoadingContext;

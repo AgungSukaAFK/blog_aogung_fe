@@ -1,0 +1,46 @@
+.cpw {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__card {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--bg-secondary);
+    &__header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      &__input {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        input {
+          padding: 5px;
+          border-radius: 3px;
+          outline: none;
+          background: none;
+          border: none;
+          color: var(--text);
+          border-bottom: 1px solid var(--border);
+        }
+      }
+    }
+  }
+}
